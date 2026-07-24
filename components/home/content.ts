@@ -48,7 +48,7 @@ export const dropdownItems: NavDropdownItem[] = [
   },
 ];
 
-export const flatItems = ["Home", "About Us", "Contact", "My Account"];
+export const flatItems = ["Home", "About Us", "Contact Us", "My Account"];
 
 export const banners = [
   {

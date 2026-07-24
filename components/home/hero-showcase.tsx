@@ -33,13 +33,13 @@ export default function HeroShowcase() {
       <div className="sm:hidden">
         <div className="relative h-[66vh] min-h-[460px] max-h-[700px] w-full overflow-hidden">
           <div className="no-scrollbar flex h-full snap-x snap-mandatory overflow-x-auto scroll-smooth">
-            {banners.map((banner) => (
-              <div key={banner.src} className="relative h-full w-full shrink-0 snap-start">
+            {banners.map((banner, index) => (
+              <div key={`${banner.src}-mobile-${index}`} className="relative h-full w-full shrink-0 snap-start">
                 <Image
                   src={banner.src}
                   alt={banner.alt}
                   fill
-                  priority={banner.src === banners[0].src}
+                  priority={index === 0}
                   className="object-contain object-center p-0.5"
                   sizes="100vw"
                 />
@@ -61,7 +61,7 @@ export default function HeroShowcase() {
             <div className="flex items-center gap-2 rounded-full px-1.5 py-1.5">
               {banners.map((banner, index) => (
                 <button
-                  key={banner.src}
+                  key={`${banner.src}-mobile-dot-${index}`}
                   type="button"
                   aria-label={`Show banner ${index + 1}`}
                   onClick={() => setActiveSlide(index)}
@@ -81,13 +81,13 @@ export default function HeroShowcase() {
             className="flex h-full w-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{ transform: `translateX(-${activeSlide * 100}%)` }}
           >
-            {banners.map((banner) => (
-              <div key={banner.src} className="relative h-full w-full shrink-0">
+            {banners.map((banner, index) => (
+              <div key={`${banner.src}-desktop-${index}`} className="relative h-full w-full shrink-0">
                 <Image
                   src={banner.src}
                   alt={banner.alt}
                   fill
-                  priority={banner.src === banners[0].src}
+                  priority={index === 0}
                   className="object-cover object-[70%_center] sm:object-center"
                   sizes="100vw"
                 />
@@ -120,7 +120,7 @@ export default function HeroShowcase() {
             <div className="flex items-center gap-2 rounded-full px-1.5 py-1.5">
               {banners.map((banner, index) => (
                 <button
-                  key={banner.src}
+                  key={`${banner.src}-desktop-dot-${index}`}
                   type="button"
                   aria-label={`Show banner ${index + 1}`}
                   onClick={() => setActiveSlide(index)}

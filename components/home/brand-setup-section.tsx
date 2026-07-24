@@ -34,7 +34,7 @@ export default function BrandSetupSection() {
   const [hoveredIndex, setHoveredIndex] = useState(0);
 
   return (
-    <section className="overflow-hidden bg-[#fffaf3] pb-10 pt-4 text-[#431407] md:pb-16 md:pt-4">
+    <section id="rituals" className="overflow-hidden bg-[#fffaf3] pb-10 pt-4 text-[#431407] md:pb-16 md:pt-4">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <h2 className="mb-5 text-[2rem] font-bold leading-[0.96] tracking-tight md:mb-10 md:text-[clamp(2.5rem,4vw,3.5rem)]">
           One sacred store for your devotional life

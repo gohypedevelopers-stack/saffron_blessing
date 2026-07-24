@@ -11,7 +11,7 @@ const videos = [
 
 export default function CreatorVideosSection() {
   return (
-    <section className="bg-[#ffedd5] py-12 text-[#431407] md:py-20">
+    <section id="devotional-moments" className="bg-[#ffedd5] py-12 text-[#431407] md:py-20">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <h2 className="mb-8 text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl">
           Moments of Devotion

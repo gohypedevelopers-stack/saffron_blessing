@@ -6,6 +6,29 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { dropdownItems, flatItems } from "@/components/home/content";
 import type { NavDropdownItem } from "@/components/home/content";
 
+const navHrefs: Record<string, string> = {
+  Home: "/",
+  "About Us": "/about",
+  "Contact Us": "/contact",
+  "My Account": "/product",
+  OFFERINGS: "/#sacred-store",
+  RITUALS: "/#rituals",
+  GUIDANCE: "/#guidance",
+  "Puja Essentials": "/product/55-smart-tv",
+  "Meditation Tools": "/product/techno-projector",
+  "Sacred Gifts": "/product/yuqos-neosound-flex",
+  "Daily Puja": "/product/55-smart-tv",
+  "Festival Kits": "/product/15-dpf",
+  "Temple Decor": "/product/iprojector-2-plus",
+  "Spiritual Consultation": "/#guidance",
+  "Prayer Requests": "/contact",
+  "Sacred Learning": "/#guidance",
+};
+
+function getNavHref(label: string) {
+  return navHrefs[label] || "/";
+}
+
 function BrandLogo() {
   return (
     <span className="flex items-center gap-2">
@@ -45,9 +68,9 @@ function IconButton({
 function FlatNavLink({ label, onClick }: { label: string; onClick?: () => void }) {
   return (
     <Link
-      href="/"
+      href={getNavHref(label)}
       onClick={onClick}
-      className="inline-flex h-full min-w-max items-center px-2 text-[14px] font-medium tracking-tight text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
+      className="inline-flex h-full min-w-max items-center rounded-full px-2 text-[14px] font-medium tracking-tight text-[#7c2d12] transition-colors duration-200 hover:bg-orange-100 hover:text-[#ea580c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
     >
       {label}
     </Link>
@@ -76,7 +99,8 @@ function DropdownNavItem({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={onToggle}
-        className="inline-flex h-full min-w-max items-center gap-0.5 px-2 text-[14px] font-medium tracking-tight text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
+        onFocus={onOpen}
+        className="inline-flex h-full min-w-max items-center gap-0.5 rounded-full px-2 text-[14px] font-medium tracking-tight text-[#7c2d12] transition-colors duration-200 hover:bg-orange-100 hover:text-[#ea580c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
       >
         <span>{label}</span>
         <ChevronDown
@@ -90,17 +114,21 @@ function DropdownNavItem({
       {open ? (
         <div
           id={panelId}
-          className="absolute left-1/2 top-full z-40 mt-2 w-[240px] -translate-x-1/2"
+          className="absolute left-1/2 top-full z-40 w-[260px] -translate-x-1/2 pt-2"
         >
           <div className="overflow-hidden rounded-2xl border border-orange-200 bg-white shadow-[0_20px_50px_rgba(194,65,12,0.14)]">
-            <div className="bg-[linear-gradient(180deg,rgba(255,247,237,0.95),rgba(255,255,255,1))] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] text-orange-700">
-              {label}
-            </div>
+            <Link
+              href={getNavHref(label)}
+              onClick={onClose}
+              className="block bg-[linear-gradient(180deg,rgba(255,247,237,0.95),rgba(255,255,255,1))] px-4 py-3 text-[11px] font-medium uppercase tracking-[0.18em] text-orange-700 transition-colors hover:text-[#ea580c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/25"
+            >
+              View all {label.toLowerCase()}
+            </Link>
             <div className="p-2">
               {items.map((item) => (
                 <Link
                   key={item}
-                  href="/"
+                  href={getNavHref(item)}
                   onClick={onClose}
                   className="flex items-center rounded-xl px-3 py-2 text-[13px] text-orange-950/75 transition-colors hover:bg-orange-50 hover:text-orange-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/25"
                 >
@@ -112,6 +140,42 @@ function DropdownNavItem({
         </div>
       ) : null}
     </div>
+  );
+}
+
+function MobileDropdown({
+  label,
+  items,
+  onNavigate,
+}: NavDropdownItem & {
+  onNavigate: () => void;
+}) {
+  return (
+    <details className="group rounded-xl border border-orange-200 bg-white/70">
+      <summary className="flex cursor-pointer list-none items-center justify-between px-3 py-3 text-[14px] font-medium text-[#7c2d12]">
+        <span>{label}</span>
+        <ChevronDown className="size-4 transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="border-t border-orange-100 p-2">
+        <Link
+          href={getNavHref(label)}
+          onClick={onNavigate}
+          className="flex rounded-lg px-3 py-2 text-[13px] font-medium text-[#ea580c] hover:bg-orange-50"
+        >
+          View all {label.toLowerCase()}
+        </Link>
+        {items.map((item) => (
+          <Link
+            key={item}
+            href={getNavHref(item)}
+            onClick={onNavigate}
+            className="flex rounded-lg px-3 py-2 text-[13px] text-orange-950/75 hover:bg-orange-50"
+          >
+            {item}
+          </Link>
+        ))}
+      </div>
+    </details>
   );
 }
 
@@ -239,9 +303,9 @@ export default function Navbar() {
           <div className="mx-auto max-w-[1600px] px-4 py-4 sm:px-6">
             <div className="grid gap-1">
               <FlatNavLink label={flatItems[0]} onClick={handleNavigate} />
-              <FlatNavLink label={dropdownItems[0].label} onClick={handleNavigate} />
-              <FlatNavLink label={dropdownItems[1].label} onClick={handleNavigate} />
-              <FlatNavLink label={dropdownItems[2].label} onClick={handleNavigate} />
+              <MobileDropdown {...dropdownItems[0]} onNavigate={handleNavigate} />
+              <MobileDropdown {...dropdownItems[1]} onNavigate={handleNavigate} />
+              <MobileDropdown {...dropdownItems[2]} onNavigate={handleNavigate} />
               <FlatNavLink label={flatItems[1]} onClick={handleNavigate} />
               <FlatNavLink label={flatItems[2]} onClick={handleNavigate} />
               <FlatNavLink label={flatItems[3]} onClick={handleNavigate} />
