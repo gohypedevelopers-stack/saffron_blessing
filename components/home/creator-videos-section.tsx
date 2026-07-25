@@ -7,7 +7,6 @@ import {
   Play,
   Pause,
   Maximize2,
-  Sparkles,
   Volume2,
   VolumeX,
   Flame,
@@ -305,7 +304,7 @@ export default function CreatorVideosSection() {
 
               {/* Mantra Caption Bar */}
               <div className="mt-4 rounded-xl bg-black/60 backdrop-blur-md px-4 py-2.5 border border-amber-500/30 flex items-center gap-3">
-                <Sparkles className="size-4 shrink-0 text-amber-400" />
+                <Flame className="size-4 shrink-0 text-amber-400 fill-amber-400" />
                 <p className="text-[12px] sm:text-[13px] font-medium text-amber-200/90 italic truncate">
                   Vedic Mantra Resonance: &ldquo;{current.mantra}&rdquo;
                 </p>

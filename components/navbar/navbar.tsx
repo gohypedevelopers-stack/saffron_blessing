@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronDown, Menu, Search, ShoppingBag, X } from "lucide-react";
+import { ChevronDown, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { dropdownItems, flatItems } from "@/components/home/content";
 import type { NavDropdownItem } from "@/components/home/content";
 import { readLocalCart, SHOPIFY_CART_EVENT } from "@/lib/cart-store";
+import { readLocalAuth, type LocalUser, SAFFRON_AUTH_EVENT } from "@/lib/auth-store";
+import AuthModal from "@/components/navbar/auth-modal";
 
 const navHrefs: Record<string, string> = {
   Home: "/",
@@ -194,6 +196,8 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [authUser, setAuthUser] = useState<LocalUser | null>(null);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -234,6 +238,16 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    function syncAuth() {
+      setAuthUser(readLocalAuth());
+    }
+
+    syncAuth();
+    window.addEventListener(SAFFRON_AUTH_EVENT, syncAuth);
+    return () => window.removeEventListener(SAFFRON_AUTH_EVENT, syncAuth);
+  }, []);
+
   const handleNavigate = () => {
     setOpenMenu(null);
     setMobileOpen(false);
@@ -242,23 +256,18 @@ export default function Navbar() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 border-t-[3px] border-t-[#24311f] border-b border-orange-200/80 bg-[#fffaf3]"
-      onMouseLeave={() => setOpenMenu(null)}
+      className="sticky top-0 z-50 border-b border-orange-200/80 bg-[#fffaf3]/95 backdrop-blur-md transition-all duration-300"
     >
-      <div className="mx-auto flex h-[56px] max-w-[1552px] items-center justify-between px-4 sm:grid sm:h-[72px] sm:grid-cols-[minmax(260px,1fr)_auto_minmax(120px,1fr)] sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[56px] max-w-[1600px] items-center justify-between px-4 sm:h-[72px] sm:px-6 lg:grid lg:grid-cols-[220px_1fr_220px]">
         <Link
           href="/"
-          aria-label="Saffron Blessings home"
-          className="inline-flex shrink-0 items-center rounded-full text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30 sm:justify-self-start"
           onClick={handleNavigate}
+          className="flex shrink-0 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
         >
           <BrandLogo />
         </Link>
 
-        <nav
-          aria-label="Primary"
-          className="hidden h-full w-max items-stretch justify-self-center whitespace-nowrap px-4 lg:flex lg:gap-2"
-        >
+        <nav className="hidden items-center justify-center gap-1 lg:flex xl:gap-2" aria-label="Main navigation">
           <FlatNavLink label={flatItems[0]} />
           <DropdownNavItem
             {...dropdownItems[0]}
@@ -301,6 +310,21 @@ export default function Navbar() {
           <IconLink href="/#sacred-store" label="Search products">
             <Search className="size-[15px] stroke-[1.7]" />
           </IconLink>
+          <button
+            type="button"
+            onClick={() => setAuthModalOpen(true)}
+            aria-label="Member Altar Sanctuary"
+            className="relative inline-flex size-8 items-center justify-center rounded-full text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
+            title={authUser ? `Logged in as ${authUser.name}` : "Sign In / Sacred Sanctuary"}
+          >
+            {authUser ? (
+              <span className="flex size-7 items-center justify-center rounded-full bg-[#ea580c] text-[11px] font-bold text-white shadow-xs">
+                {authUser.name.slice(0, 1).toUpperCase()}
+              </span>
+            ) : (
+              <User className="size-[16px] stroke-[1.8]" />
+            )}
+          </button>
           <IconLink href="/cart" label={`Shopping bag with ${cartCount} items`}>
             <ShoppingBag className="size-[15px] stroke-[1.7]" />
             {cartCount > 0 ? (
@@ -315,6 +339,21 @@ export default function Navbar() {
           <IconLink href="/#sacred-store" label="Search products">
             <Search className="size-[15px] stroke-[1.7]" />
           </IconLink>
+          <button
+            type="button"
+            onClick={() => setAuthModalOpen(true)}
+            aria-label="Member Altar Sanctuary"
+            className="relative inline-flex size-8 items-center justify-center rounded-full text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none"
+            title={authUser ? `Logged in as ${authUser.name}` : "Sign In / Sacred Sanctuary"}
+          >
+            {authUser ? (
+              <span className="flex size-7 items-center justify-center rounded-full bg-[#ea580c] text-[11px] font-bold text-white shadow-xs">
+                {authUser.name.slice(0, 1).toUpperCase()}
+              </span>
+            ) : (
+              <User className="size-[16px] stroke-[1.8]" />
+            )}
+          </button>
           <IconLink href="/cart" label={`Shopping bag with ${cartCount} items`}>
             <ShoppingBag className="size-[15px] stroke-[1.7]" />
             {cartCount > 0 ? (
@@ -347,6 +386,7 @@ export default function Navbar() {
           </div>
         </div>
       ) : null}
+      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </header>
   );
 }

@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   User,
-  Sparkles,
   Package,
   MapPin,
   Heart,
@@ -93,7 +92,7 @@ export default function AccountPage() {
 
   const handleDemoLogin = () => {
     const loggedInUser = loginLocalAuth(DEMO_DEVOTEE);
-    toast.success(`✨ Logged in as ${loggedInUser.name}! Explore your blessings and offerings.`);
+    toast.success(`🙏 Logged in as ${loggedInUser.name}! Explore your blessings and offerings.`);
   };
 
   const handleRegister = (e: React.FormEvent) => {
@@ -338,7 +337,7 @@ export default function AccountPage() {
             <div className="mt-6 rounded-2xl border border-amber-300/80 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-sm">
               <div className="flex items-start gap-3.5">
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-amber-700">
-                  <Sparkles className="size-5 text-[#ea580c] fill-orange-400" />
+                  <Flame className="size-5 text-[#ea580c] fill-orange-400" />
                 </div>
                 <div className="flex-1">
                   <h4 className="text-[14px] font-bold text-[#7c2d12]">
@@ -379,7 +378,7 @@ export default function AccountPage() {
                 <div className="mt-4 w-full rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50/50 p-4 border border-orange-200/60 text-left shadow-inner">
                   <div className="flex items-center justify-between text-[13px] font-bold text-[#7c2d12] mb-1.5">
                     <span className="inline-flex items-center gap-1.5">
-                      <Sparkles className="size-4 text-[#ea580c] fill-orange-400" />
+                      <Award className="size-4 text-[#ea580c] fill-orange-400" />
                       {user.tier}
                     </span>
                     <span className="bg-[#ea580c] text-white px-2.5 py-0.5 rounded-full text-[11px]">
@@ -478,7 +477,7 @@ export default function AccountPage() {
                     rel="noopener noreferrer"
                     className="flex w-full items-center justify-center gap-2 rounded-xl border border-orange-200 bg-orange-50/50 py-2.5 text-[13px] font-semibold text-[#7c2d12] transition hover:bg-orange-100"
                   >
-                    <span>🌐 Official Shopify Storefront Portal</span>
+                    <span>🌐 Official Devotee Altar Portal</span>
                     <ExternalLink className="size-3.5 text-[#ea580c]" />
                   </a>
 
@@ -750,7 +749,7 @@ export default function AccountPage() {
                     <div className="absolute right-0 top-0 size-64 bg-orange-400/10 rounded-full blur-3xl pointer-events-none" />
                     <div className="relative z-10 max-w-2xl">
                       <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1 text-[13px] font-semibold text-amber-300 mb-3 backdrop-blur-sm">
-                        <Sparkles className="size-4 fill-amber-300" />
+                        <Award className="size-4 fill-amber-300" />
                         <span>Active Membership: {user.tier}</span>
                       </div>
                       <h4 className="text-2xl font-bold font-serif">

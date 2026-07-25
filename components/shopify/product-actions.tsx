@@ -43,7 +43,7 @@ export default function ProductActions({ product, mode = "card", quantity = 1 }:
     try {
       await redirectToShopifyCheckout(product.variantId, quantity);
     } catch (checkoutError) {
-      setError(checkoutError instanceof Error ? checkoutError.message : "Unable to start Shopify checkout.");
+      setError(checkoutError instanceof Error ? checkoutError.message : "Unable to start sacred checkout.");
       setIsCheckingOut(false);
     }
   }

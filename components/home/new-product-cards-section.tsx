@@ -184,7 +184,7 @@ export default function NewProductCardsSection({ products = [] }: { products?: S
               <div className="flex flex-1 flex-col p-4">
                 <Link href={product.href || `/product/${product.id}`} className="block" aria-label={`View ${product.title}`}>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#ea580c]">
-                    {product.category || "Shopify Offering"}
+                    {product.category || "Sacred Offering"}
                   </p>
                   <h3 className="mt-1.5 line-clamp-2 text-[14px] font-medium leading-5 text-[#431407]">
                     {product.title}

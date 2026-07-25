@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import {
   User,
-  Sparkles,
   Package,
   MapPin,
   Heart,
@@ -103,7 +102,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
 
   const handleDemoLogin = () => {
     const loggedInUser = loginLocalAuth(DEMO_DEVOTEE);
-    toast.success(`✨ Logged in as ${loggedInUser.name}! Explore your blessings and offerings.`);
+    toast.success(`🙏 Logged in as ${loggedInUser.name}! Explore your blessings and offerings.`);
   };
 
   const handleRegister = (e: React.FormEvent) => {
@@ -207,7 +206,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                 <div className="mt-2 rounded-xl bg-black/20 backdrop-blur-md p-3.5 border border-white/15 shadow-inner">
                   <div className="flex items-center justify-between text-[13px] font-medium text-amber-200 mb-1.5">
                     <span className="inline-flex items-center gap-1.5">
-                      <Sparkles className="size-4 text-amber-300 fill-amber-300" />
+                      <Award className="size-4 text-amber-300 fill-amber-300" />
                       {user.tier}
                     </span>
                     <span className="font-bold text-white bg-white/20 px-2.5 py-0.5 rounded-full text-[12px]">
@@ -393,7 +392,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
               <div className="mt-4 rounded-2xl border border-amber-300/80 bg-gradient-to-br from-amber-50 to-orange-50 p-4 shadow-sm">
                 <div className="flex items-start gap-3">
                   <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-amber-500/15 text-amber-700">
-                    <Sparkles className="size-5 text-[#ea580c] fill-orange-400" />
+                    <Flame className="size-5 text-[#ea580c] fill-orange-400" />
                   </div>
                   <div className="flex-1">
                     <h4 className="text-[13px] font-bold text-[#7c2d12]">
@@ -663,7 +662,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
                 <div className="space-y-3">
                   <div className="rounded-2xl bg-gradient-to-br from-[#7c2d12] to-[#9a3412] p-5 text-white shadow-md">
                     <div className="flex items-center gap-2 text-amber-300 font-bold text-[14px] mb-1">
-                      <Sparkles className="size-4 fill-amber-300" />
+                      <Award className="size-4 fill-amber-300" />
                       <span>Saffron Blessings Program</span>
                     </div>
                     <p className="text-[12px] text-orange-100/90 leading-relaxed">
@@ -705,7 +704,7 @@ export default function AuthModal({ open, onOpenChange }: AuthModalProps) {
               rel="noopener noreferrer"
               className="flex w-full items-center justify-center gap-2 rounded-xl border border-orange-300/80 bg-white py-2.5 text-[13px] font-semibold text-[#7c2d12] shadow-sm transition hover:bg-orange-50 hover:border-orange-400"
             >
-              <span>🌐 Access Official Shopify Storefront Portal</span>
+              <span>🌐 Access Sanctuary Member Altar</span>
               <ExternalLink className="size-3.5 text-[#ea580c]" />
             </a>
           )}

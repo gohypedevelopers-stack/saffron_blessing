@@ -11,7 +11,6 @@ import {
   ShieldCheck,
   Star,
   Truck,
-  Sparkles,
   Share2,
   ChevronLeft,
   ChevronRight,
@@ -223,7 +222,7 @@ export default function ProductDetail({
             {/* Sacred Origin Assurance Banner */}
             <div className="mt-2 rounded-2xl bg-gradient-to-r from-orange-100/80 to-amber-100/80 p-4 border border-orange-200/80 flex items-center gap-4">
               <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#7c2d12] text-amber-300 shadow-sm">
-                <Sparkles className="size-6 animate-pulse" />
+                <Flame className="size-6 animate-pulse text-amber-300 fill-amber-300" />
               </div>
               <div className="min-w-0 flex-1">
                 <h4 className="text-sm font-bold text-[#7c2d12]">Vedic Consecration Guarantee</h4>
@@ -288,7 +287,7 @@ export default function ProductDetail({
               <span className="text-orange-900/35">•</span>
               <span className="inline-flex items-center gap-1 text-emerald-700 font-semibold">
                 <Check className="size-4" />
-                <span>Verified Live Shopify Catalog</span>
+                <span>Verified Devotional Offering</span>
               </span>
             </div>
 

@@ -23,15 +23,15 @@ export function shopifyProductToHomeProduct(product: ShopifyProductCard): Produc
   return {
     id: product.handle,
     title: product.title,
-    category: "Shopify Offering",
-    subtitle: product.description || "Sacred offering from our Shopify store.",
+    category: "Sacred Offering",
+    subtitle: product.description || "Sacred offering from our sanctuary altar.",
     image: product.featuredImage?.url || "/spiritual-products.png",
     alt: product.featuredImage?.altText || product.title,
     price: formatShopifyPrice(product.priceRange.minVariantPrice),
     oldPrice: getCompareAtPrice(product),
     discount: product.availableForSale ? undefined : "Sold out",
     rating: 4.8,
-    reviews: "Shopify",
+    reviews: "Verified",
     variantId: product.selectedOrFirstAvailableVariant?.id,
     availableForSale: product.availableForSale && product.selectedOrFirstAvailableVariant?.availableForSale !== false,
     href: `/product/${product.handle}`,
@@ -86,7 +86,7 @@ export function shopifyProductToDetail(product: ShopifyProductCard): ProductDeta
       ? "In Stock • Ready for immediate auspicious dispatch across India"
       : "Currently being replenished by our artisans",
     "Pure materials with natural fragrance and spiritual resonance",
-    "Secure checkout & buyer protection via Shopify",
+    "Secure checkout & buyer protection via Sanctuary Encryption",
   ];
 
   const specs = [
