@@ -5,12 +5,12 @@ import { ChevronDown, Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { dropdownItems, flatItems } from "@/components/home/content";
 import type { NavDropdownItem } from "@/components/home/content";
+import { readLocalCart, SHOPIFY_CART_EVENT } from "@/lib/cart-store";
 
 const navHrefs: Record<string, string> = {
   Home: "/",
   "About Us": "/about",
   "Contact Us": "/contact",
-  "My Account": "/product",
   OFFERINGS: "/#sacred-store",
   RITUALS: "/#rituals",
   GUIDANCE: "/#guidance",
@@ -47,32 +47,43 @@ function BrandLogo() {
   );
 }
 
-function IconButton({
+function IconLink({
   children,
   label,
+  href,
+  onClick,
 }: {
   children: ReactNode;
   label: string;
+  href: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }) {
   return (
-    <button
-      type="button"
+    <Link
+      href={href}
+      onClick={onClick}
       aria-label={label}
-      className="inline-flex size-8 items-center justify-center rounded-full text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
+      className="relative inline-flex size-8 items-center justify-center rounded-full text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
     >
       {children}
-    </button>
+    </Link>
   );
 }
 
-function FlatNavLink({ label, onClick }: { label: string; onClick?: () => void }) {
+function FlatNavLink({
+  label,
+  onClick,
+}: {
+  label: string;
+  onClick?: () => void;
+}) {
   return (
     <Link
       href={getNavHref(label)}
       onClick={onClick}
-      className="inline-flex h-full min-w-max items-center px-2.5 text-[13px] font-medium tracking-tight text-[#7c2d12] transition-colors duration-200 hover:text-[#ea580c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
+      className="inline-flex h-full min-w-max items-center gap-1 px-2.5 text-[13px] font-medium tracking-tight text-[#7c2d12] transition-colors duration-200 hover:text-[#ea580c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
     >
-      {label}
+      <span>{label}</span>
     </Link>
   );
 }
@@ -182,6 +193,7 @@ function MobileDropdown({
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
   const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -205,6 +217,20 @@ export default function Navbar() {
     return () => {
       document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    function syncState() {
+      setCartCount(readLocalCart().reduce((total, item) => total + item.quantity, 0));
+    }
+
+    syncState();
+    window.addEventListener(SHOPIFY_CART_EVENT, syncState);
+    window.addEventListener("storage", syncState);
+    return () => {
+      window.removeEventListener(SHOPIFY_CART_EVENT, syncState);
+      window.removeEventListener("storage", syncState);
     };
   }, []);
 
@@ -269,25 +295,34 @@ export default function Navbar() {
           />
           <FlatNavLink label={flatItems[1]} />
           <FlatNavLink label={flatItems[2]} />
-          <FlatNavLink label={flatItems[3]} />
         </nav>
 
         <div className="hidden shrink-0 items-center justify-self-end gap-1 sm:flex sm:gap-2">
-          <IconButton label="Search">
+          <IconLink href="/#sacred-store" label="Search products">
             <Search className="size-[15px] stroke-[1.7]" />
-          </IconButton>
-          <IconButton label="Shopping bag">
+          </IconLink>
+          <IconLink href="/cart" label={`Shopping bag with ${cartCount} items`}>
             <ShoppingBag className="size-[15px] stroke-[1.7]" />
-          </IconButton>
+            {cartCount > 0 ? (
+              <span className="absolute -right-1 -top-1 flex min-w-4 items-center justify-center rounded-full bg-[#ea580c] px-1 text-[9px] font-semibold leading-4 text-white">
+                {cartCount}
+              </span>
+            ) : null}
+          </IconLink>
         </div>
 
         <div className="ml-auto flex shrink-0 items-center gap-0.5 sm:hidden">
-          <IconButton label="Search">
+          <IconLink href="/#sacred-store" label="Search products">
             <Search className="size-[15px] stroke-[1.7]" />
-          </IconButton>
-          <IconButton label="Shopping bag">
+          </IconLink>
+          <IconLink href="/cart" label={`Shopping bag with ${cartCount} items`}>
             <ShoppingBag className="size-[15px] stroke-[1.7]" />
-          </IconButton>
+            {cartCount > 0 ? (
+              <span className="absolute -right-1 -top-1 flex min-w-4 items-center justify-center rounded-full bg-[#ea580c] px-1 text-[9px] font-semibold leading-4 text-white">
+                {cartCount}
+              </span>
+            ) : null}
+          </IconLink>
           <button
             type="button"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -308,7 +343,6 @@ export default function Navbar() {
               <MobileDropdown {...dropdownItems[2]} onNavigate={handleNavigate} />
               <FlatNavLink label={flatItems[1]} onClick={handleNavigate} />
               <FlatNavLink label={flatItems[2]} onClick={handleNavigate} />
-              <FlatNavLink label={flatItems[3]} onClick={handleNavigate} />
             </div>
           </div>
         </div>
@@ -316,8 +350,3 @@ export default function Navbar() {
     </header>
   );
 }
-
-
-
-
-

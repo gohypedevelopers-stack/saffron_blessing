@@ -1,0 +1,441 @@
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\user\AppData\Local\Temp\next-panic-c06a1b77f75d278c5f50aedbd1e05148.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20failed%20to%20write%20to%20%22D%3A%5C%5Cspirituality%5C%5Cxelectrone%5C%5C.next%5C%5Cdev%5C%5Cstatic%5C%5Cchunks%5C%5Cnode_modules_next_dist_shared_lib_12jmhie._.js.map%22&body=Turbopack%20version%3A%20%60v16.2.10%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0Afailed%20to%20write%20to%20%22D%3A%5C%5Cspirituality%5C%5Cxelectrone%5C%5C.next%5C%5Cdev%5C%5Cstatic%5C%5Cchunks%5C%5Cnode_modules_next_dist_shared_lib_12jmhie._.js.map%22%0A%0ACaused%20by%3A%0A-%20Access%20is%20denied.%20%28os%20error%205%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\user\AppData\Local\Temp\next-panic-c06a1b77f75d278c5f50aedbd1e05148.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20failed%20to%20write%20to%20%22D%3A%5C%5Cspirituality%5C%5Csaffron%20blessing%5C%5C.next%5C%5Cdev%5C%5Cstatic%5C%5Cchunks%5C%5Capp_about_page_tsx_0rzf6ar._.js%22&body=Turbopack%20version%3A%20%60v16.2.10%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0Afailed%20to%20write%20to%20%22D%3A%5C%5Cspirituality%5C%5Csaffron%20blessing%5C%5C.next%5C%5Cdev%5C%5Cstatic%5C%5Cchunks%5C%5Capp_about_page_tsx_0rzf6ar._.js%22%0A%0ACaused%20by%3A%0A-%20Access%20is%20denied.%20%28os%20error%205%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+
+-----
+[1m[31mFATAL[39m[0m: An unexpected Turbopack error occurred. A panic log has been written to C:\Users\user\AppData\Local\Temp\next-panic-c06a1b77f75d278c5f50aedbd1e05148.log.
+
+To help make Turbopack better, report this error by clicking here: https://bugs.nextjs.org/search?category=turbopack-error-report&title=Turbopack%20Error%3A%20failed%20to%20write%20to%20%22D%3A%5C%5Cspirituality%5C%5Cxelectrone%5C%5C.next%5C%5Cdev%5C%5Cstatic%5C%5Cchunks%5C%5Cnode_modules_next_dist_shared_lib_12jmhie._.js.map%22&body=Turbopack%20version%3A%20%60v16.2.10%60%0ANext.js%20version%3A%20%600.0.0%60%0A%0AError%20message%3A%0A%60%60%60%0Afailed%20to%20write%20to%20%22D%3A%5C%5Cspirituality%5C%5Cxelectrone%5C%5C.next%5C%5Cdev%5C%5Cstatic%5C%5Cchunks%5C%5Cnode_modules_next_dist_shared_lib_12jmhie._.js.map%22%0A%0ACaused%20by%3A%0A-%20Access%20is%20denied.%20%28os%20error%205%29%0A%60%60%60&labels=Turbopack,Turbopack%20Panic%20Backtrace
+-----
+
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\xelectrone\\.next\\dev\\static\\chunks\\node_modules_next_dist_shared_lib_12jmhie._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at ignore-listed frames {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_about_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\static\\chunks\\app_contact_page_tsx_0rzf6ar._.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\chunks\\ssr\\[root-of-the-server]__01s01wo._.js.map") {
+  location: undefined
+}
+[Server HMR] Subscription error: Error [TurbopackInternalError]: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js"
+
+Caused by:
+- Access is denied. (os error 5)
+    at <unknown> (TurbopackInternalError: failed to write to "D:\\spirituality\\saffron blessing\\.next\\dev\\server\\app\\product\\page_client-reference-manifest.js") {
+  location: undefined
+}

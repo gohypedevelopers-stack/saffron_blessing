@@ -9,6 +9,21 @@ export type ProductSpec = {
   value: string;
 };
 
+export type ProductVariant = {
+  id: string;
+  title: string;
+  price: string;
+  oldPrice?: string;
+  availableForSale: boolean;
+  image?: string;
+  selectedOptions?: Array<{ name: string; value: string }>;
+};
+
+export type ProductOption = {
+  name: string;
+  values: string[];
+};
+
 export type ProductDetailItem = {
   id: string;
   slug: string;
@@ -21,12 +36,19 @@ export type ProductDetailItem = {
   rating: number;
   reviewsCount: string;
   description: string;
+  descriptionHtml?: string;
+  vendor?: string;
+  tags?: string[];
   colors: ProductColor[];
   features: string[];
   specs: ProductSpec[];
   shippingNotice: string;
   mainImage: string;
+  images?: string[];
   variantId?: string;
+  availableForSale?: boolean;
+  variants?: ProductVariant[];
+  options?: ProductOption[];
 };
 
 const spiritualImage = "/spiritual-products.png";

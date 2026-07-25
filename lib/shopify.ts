@@ -10,25 +10,52 @@ export type ShopifyImage = {
   altText: string | null;
 };
 
+export type ShopifyVariant = {
+  id: string;
+  title: string;
+  availableForSale: boolean;
+  price: ShopifyMoney;
+  compareAtPrice: ShopifyMoney | null;
+  image?: ShopifyImage | null;
+  selectedOptions: Array<{
+    name: string;
+    value: string;
+  }>;
+};
+
 export type ShopifyProductCard = {
   id: string;
   handle: string;
   title: string;
   description: string;
+  descriptionHtml?: string;
+  productType?: string;
+  vendor?: string;
+  tags?: string[];
   availableForSale: boolean;
   featuredImage: ShopifyImage | null;
+  images?: {
+    nodes: ShopifyImage[];
+  };
+  options?: Array<{
+    name: string;
+    values: string[];
+  }>;
+  variants?: {
+    nodes: ShopifyVariant[];
+  };
   priceRange: {
     minVariantPrice: ShopifyMoney;
   };
   compareAtPriceRange: {
     minVariantPrice: ShopifyMoney;
   };
-  selectedOrFirstAvailableVariant: {
-    id: string;
-    title: string;
-    availableForSale: boolean;
-    price: ShopifyMoney;
-  } | null;
+  selectedOrFirstAvailableVariant: ShopifyVariant | null;
+};
+
+export type ShopifyCartLineInput = {
+  variantId: string;
+  quantity?: number;
 };
 
 type ShopifyResponse<T> = {
@@ -36,7 +63,7 @@ type ShopifyResponse<T> = {
   errors?: Array<{ message: string }>;
 };
 
-function getShopifyConfig() {
+export function getShopifyConfig() {
   const domain = process.env.SHOPIFY_STORE_DOMAIN;
   const token = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
@@ -52,6 +79,17 @@ function getShopifyConfig() {
 
 export function isShopifyConfigured() {
   return Boolean(getShopifyConfig());
+}
+
+export function getShopifyStorefrontUrl(path = "/") {
+  const config = getShopifyConfig();
+
+  if (!config) {
+    return null;
+  }
+
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return `https://${config.domain}${normalizedPath}`;
 }
 
 export async function shopifyFetch<T>({
@@ -117,10 +155,47 @@ export async function getShopifyProducts(first = 20) {
               handle
               title
               description
+              descriptionHtml
+              productType
+              vendor
+              tags
               availableForSale
               featuredImage {
                 url
                 altText
+              }
+              images(first: 10) {
+                nodes {
+                  url
+                  altText
+                }
+              }
+              options {
+                name
+                values
+              }
+              variants(first: 20) {
+                nodes {
+                  id
+                  title
+                  availableForSale
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  compareAtPrice {
+                    amount
+                    currencyCode
+                  }
+                  image {
+                    url
+                    altText
+                  }
+                  selectedOptions {
+                    name
+                    value
+                  }
+                }
               }
               priceRange {
                 minVariantPrice {
@@ -169,10 +244,47 @@ export async function getShopifyProductByHandle(handle: string) {
             handle
             title
             description
+            descriptionHtml
+            productType
+            vendor
+            tags
             availableForSale
             featuredImage {
               url
               altText
+            }
+            images(first: 10) {
+              nodes {
+                url
+                altText
+              }
+            }
+            options {
+              name
+              values
+            }
+            variants(first: 20) {
+              nodes {
+                id
+                title
+                availableForSale
+                price {
+                  amount
+                  currencyCode
+                }
+                compareAtPrice {
+                  amount
+                  currencyCode
+                }
+                image {
+                  url
+                  altText
+                }
+                selectedOptions {
+                  name
+                  value
+                }
+              }
             }
             priceRange {
               minVariantPrice {
@@ -208,7 +320,12 @@ export async function getShopifyProductByHandle(handle: string) {
   }
 }
 
-export async function createShopifyCart(variantId: string, quantity = 1) {
+export async function createShopifyCart(lines: ShopifyCartLineInput[] | string, quantity = 1) {
+  const cartLines = (Array.isArray(lines) ? lines : [{ variantId: lines, quantity }]).map((line) => ({
+    merchandiseId: line.variantId,
+    quantity: Math.max(1, Math.floor(line.quantity ?? 1)),
+  }));
+
   const data = await shopifyFetch<{
     cartCreate: {
       cart: {
@@ -234,12 +351,7 @@ export async function createShopifyCart(variantId: string, quantity = 1) {
     `,
     variables: {
       input: {
-        lines: [
-          {
-            merchandiseId: variantId,
-            quantity,
-          },
-        ],
+        lines: cartLines,
       },
     },
     cache: "no-store",

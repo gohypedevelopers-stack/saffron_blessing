@@ -12,13 +12,18 @@ export type CategoryItem = {
 export type ProductItem = {
   id: string;
   title: string;
+  category?: string;
   subtitle: string;
   image: string;
   alt: string;
   price: string;
   oldPrice?: string;
+  discount?: string;
   rating: number;
   reviews: string;
+  variantId?: string;
+  availableForSale?: boolean;
+  href?: string;
 };
 
 export type BestSellerItem = {
@@ -48,7 +53,7 @@ export const dropdownItems: NavDropdownItem[] = [
   },
 ];
 
-export const flatItems = ["Home", "About Us", "Contact Us", "My Account"];
+export const flatItems = ["Home", "About Us", "Contact Us"];
 
 export const banners = [
   {

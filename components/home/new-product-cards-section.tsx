@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
+import ProductActions from "@/components/shopify/product-actions";
 
 type SpiritualProduct = {
   id: string;
@@ -14,6 +15,8 @@ type SpiritualProduct = {
   rating: number;
   reviews: number | string;
   href?: string;
+  variantId?: string;
+  availableForSale?: boolean;
 };
 
 const spiritualProducts: SpiritualProduct[] = [
@@ -157,8 +160,11 @@ export default function NewProductCardsSection({ products = [] }: { products?: S
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {displayProducts.map((product) => (
-            <Link key={product.id} href={product.href || `/product/${product.id}`} className="group block h-full" aria-label={`View ${product.title}`}>
-              <article className="overflow-hidden border border-orange-200/80 bg-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(194,65,12,0.14)]">
+            <article
+              key={product.id}
+              className="group flex h-full flex-col overflow-hidden border border-orange-200/80 bg-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(194,65,12,0.14)]"
+            >
+              <Link href={product.href || `/product/${product.id}`} className="block" aria-label={`View ${product.title}`}>
                 <div className="relative flex h-[220px] items-center justify-center bg-[#fffaf3] p-4">
                   <Image
                     src={product.image}
@@ -173,8 +179,10 @@ export default function NewProductCardsSection({ products = [] }: { products?: S
                     </span>
                   )}
                 </div>
+              </Link>
 
-                <div className="flex flex-1 flex-col p-4">
+              <div className="flex flex-1 flex-col p-4">
+                <Link href={product.href || `/product/${product.id}`} className="block" aria-label={`View ${product.title}`}>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#ea580c]">
                     {product.category || "Shopify Offering"}
                   </p>
@@ -186,25 +194,18 @@ export default function NewProductCardsSection({ products = [] }: { products?: S
                     <Rating value={product.rating} />
                     <span className="text-[11px] text-orange-900/55">({product.reviews})</span>
                   </div>
+                </Link>
 
-                  <div className="mt-auto flex items-end gap-2 pt-3">
-                    <span className="text-[18px] font-bold text-[#431407]">{product.price}</span>
-                    {product.oldPrice && (
-                      <span className="pb-0.5 text-[13px] text-orange-900/35 line-through">{product.oldPrice}</span>
-                    )}
-                  </div>
-
-                  <div className="mt-3 grid grid-cols-2 gap-2">
-                    <span className="inline-flex h-10 items-center justify-center rounded-md border border-[#ea580c] text-[13px] font-medium text-[#ea580c] transition-colors group-hover:bg-[#fff7ed]">
-                      Add to cart
-                    </span>
-                    <span className="inline-flex h-10 items-center justify-center rounded-md bg-[#ea580c] text-[13px] font-medium text-white transition-opacity group-hover:opacity-90">
-                      Buy now
-                    </span>
-                  </div>
+                <div className="mt-auto flex items-end gap-2 pt-3">
+                  <span className="text-[18px] font-bold text-[#431407]">{product.price}</span>
+                  {product.oldPrice && (
+                    <span className="pb-0.5 text-[13px] text-orange-900/35 line-through">{product.oldPrice}</span>
+                  )}
                 </div>
-              </article>
-            </Link>
+
+                <ProductActions product={product} />
+              </div>
+            </article>
           ))}
         </div>
       </div>
