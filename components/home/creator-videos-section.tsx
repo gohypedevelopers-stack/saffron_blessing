@@ -156,7 +156,7 @@ export default function CreatorVideosSection() {
         videoRef.current.play().catch(() => {});
       }
     }
-    toast.info(!isPlaying ? "▶️ Autoplay resumed" : "⏸️ Autoplay paused");
+    toast.info(!isPlaying ? "Autoplay resumed" : "Autoplay paused");
   };
 
   const handleQuickAdd = (prod: (typeof products)[0], e: React.MouseEvent) => {
@@ -169,7 +169,7 @@ export default function CreatorVideosSection() {
       alt: prod.alt,
       href: `/product/${prod.id}`,
     });
-    toast.success(`🛍️ "${prod.title}" added to your sacred shopping bag.`);
+    toast.success(`"${prod.title}" added to your shopping bag.`);
   };
 
   return (
@@ -245,16 +245,15 @@ export default function CreatorVideosSection() {
             {/* Video Element */}
             <video
               ref={videoRef}
+              key={current.videoUrl}
               autoPlay
               loop
               muted={isMuted}
               playsInline
               poster={current.poster}
+              src={current.videoUrl}
               className="absolute inset-0 size-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.02]"
-            >
-              <source src={current.videoUrl} type="video/mp4" />
-              Your browser does not support HTML5 video.
-            </video>
+            />
 
             {/* Gradient Overlays for Readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 pointer-events-none" />
@@ -455,6 +454,7 @@ export default function CreatorVideosSection() {
               <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
                 <video
                   ref={modalVideoRef}
+                  key={current.videoUrl}
                   autoPlay
                   loop
                   controls

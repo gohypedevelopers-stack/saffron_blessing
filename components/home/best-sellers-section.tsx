@@ -5,14 +5,15 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { bestSellers } from "@/components/home/best-sellers-data";
+import { Award, ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function SpecificationRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="grid grid-cols-2 gap-4 border-t border-orange-200 py-4 first:border-t-0 first:pt-0 last:pb-0">
-      <div className="text-[15px] font-medium text-orange-950/70">{label}</div>
-      <div className="text-right text-[15px] font-semibold text-[#431407]">{value}</div>
+    <div className="grid grid-cols-2 gap-4 border-t border-orange-200/80 py-3.5 first:border-t-0 first:pt-0 last:pb-0">
+      <div className="text-xs font-semibold uppercase tracking-wider text-orange-950/60">{label}</div>
+      <div className="text-right text-sm font-bold text-[#431407]">{value}</div>
     </div>
   );
 }
@@ -40,15 +41,11 @@ export default function BestSellersSection() {
   const titleRefs = useRef<Array<HTMLHeadingElement | null>>([]);
 
   useLayoutEffect(() => {
-    if (reduceMotion) {
-      return;
-    }
+    if (reduceMotion) return;
 
     const section = sectionRef.current;
     const viewport = viewportRef.current;
-    if (!section || !viewport) {
-      return;
-    }
+    if (!section || !viewport) return;
 
     const ctx = gsap.context(() => {
       const trigger = ScrollTrigger.create({
@@ -86,15 +83,10 @@ export default function BestSellersSection() {
   }, [reduceMotion]);
 
   useLayoutEffect(() => {
-    if (reduceMotion) {
-      return;
-    }
+    if (reduceMotion) return;
 
     cardRefs.current.forEach((card, index) => {
-      if (!card) {
-        return;
-      }
-
+      if (!card) return;
       gsap.to(card, {
         autoAlpha: index === activeIndex ? 1 : 0,
         y: index === activeIndex ? 0 : 24,
@@ -106,10 +98,7 @@ export default function BestSellersSection() {
     });
 
     visualRefs.current.forEach((visual, index) => {
-      if (!visual) {
-        return;
-      }
-
+      if (!visual) return;
       gsap.to(visual, {
         autoAlpha: index === activeIndex ? 1 : 0,
         y: index === activeIndex ? 0 : 150,
@@ -122,10 +111,7 @@ export default function BestSellersSection() {
     });
 
     glowRefs.current.forEach((glow, index) => {
-      if (!glow) {
-        return;
-      }
-
+      if (!glow) return;
       gsap.to(glow, {
         autoAlpha: index === activeIndex ? 1 : 0,
         duration: 0.7,
@@ -134,7 +120,6 @@ export default function BestSellersSection() {
       });
     });
 
-    // Update track position directly to avoid an extra React render on scroll
     const activeTitle = titleRefs.current[activeIndex];
     const track = trackRef.current;
     if (activeTitle && track && track.parentElement) {
@@ -155,59 +140,56 @@ export default function BestSellersSection() {
   } as const;
 
   const titleClass =
-    "shrink-0 whitespace-nowrap text-[clamp(2.9rem,5vw,6.6rem)] font-semibold leading-none tracking-[-0.08em] transition-all duration-500 ease-out";
+    "shrink-0 whitespace-nowrap text-[clamp(2.5rem,4.5vw,5.5rem)] font-serif font-bold leading-none tracking-tight transition-all duration-500 ease-out";
 
   if (reduceMotion) {
     return (
-      <section className="hidden bg-[#fffaf3] text-[#431407] lg:block">
-        <div className="mx-auto max-w-[1600px] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-          <p className="text-center text-[12px] font-semibold uppercase tracking-[0.08em] text-[#ea580c]">
-            Best sellers
-          </p>
-          <div className="relative mt-2 flex w-full justify-center lg:mt-4" style={titleRailStyle}>
-            <div className="flex min-w-max items-center justify-center gap-14 py-0.5">
-              {bestSellers.map((item, index) => (
-                <h2
-                  key={item.id}
-                  className={`${titleClass} ${
-                    index === 0
-                      ? "translate-y-[-0.02em] text-[#431407] opacity-100"
-                      : "translate-y-[0.02em] text-orange-200 opacity-60"
-                  }`}
-                >
-                  {item.name}
-                </h2>
-              ))}
+      <section className="bg-[#fffaf3] text-[#431407] py-16 border-b border-orange-200/60">
+        <div className="mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#ea580c] mb-2">
+              <Award className="size-4" />
+              <span>Sanctuary Favorites</span>
             </div>
+            <h2 className="font-serif text-3xl font-bold tracking-tight text-[#431407] sm:text-4xl">
+              Curated Best Sellers
+            </h2>
           </div>
-        </div>
-        <div className="mx-auto max-w-[1600px] space-y-6 px-4 pb-10 sm:px-6 lg:px-8">
-          {bestSellers.map((item) => (
-            <div key={item.id} className="grid gap-4 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
-              <div className="rounded-[28px] border border-orange-200 bg-white px-5 py-5 md:px-8 md:py-7">
-                <div className="flex flex-wrap items-end gap-x-3 gap-y-1 border-b border-orange-200 pb-6">
-                  <span className="text-[27px] font-semibold text-[#431407]">{item.price}</span>
-                  <span className="text-[15px] text-orange-900/35 line-through">{item.oldPrice}</span>
-                  <span className="text-[16px] font-medium text-[#ea580c]">{item.discount}</span>
+
+          <div className="space-y-12">
+            {bestSellers.map((item) => (
+              <div key={item.id} className="grid gap-8 lg:grid-cols-[1fr_1.1fr] items-center">
+                <div className="rounded-3xl border border-orange-200/80 bg-white p-6 sm:p-8 shadow-sm">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-orange-200/80 pb-6">
+                    <span className="font-serif text-3xl font-bold text-[#431407]">{item.price}</span>
+                    <span className="text-sm text-orange-900/40 line-through">{item.oldPrice}</span>
+                    <span className="rounded-full bg-[#ea580c] px-3 py-1 text-xs font-bold text-white ml-auto">
+                      {item.discount}
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-serif text-2xl font-bold text-[#431407]">{item.name}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-orange-950/75 sm:text-base">
+                    {item.description}
+                  </p>
+                  <div className="mt-6 border-t border-orange-100 pt-4">
+                    {item.specs.map((spec) => (
+                      <SpecificationRow key={spec.label} label={spec.label} value={spec.value} />
+                    ))}
+                  </div>
+                  <a
+                    href={`/product?id=${item.id}`}
+                    className="mt-8 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[#7c2d12] px-6 text-base font-bold text-white shadow-md transition-all hover:bg-[#9a3412]"
+                  >
+                    <span>View Offering Details</span>
+                    <ArrowRight className="size-4" />
+                  </a>
                 </div>
-                <p className="mt-5 max-w-[34rem] text-[17px] leading-8 text-orange-950/75 md:text-[18px]">
-                  {item.description}
-                </p>
-                <div className="mt-6">
-                  {item.specs.map((spec) => (
-                    <SpecificationRow key={spec.label} label={spec.label} value={spec.value} />
-                  ))}
+                <div className="relative min-h-[350px] aspect-square rounded-3xl border border-orange-100 bg-gradient-to-b from-orange-50/50 to-white overflow-hidden p-6 shadow-inner">
+                  <Image src={item.image} alt={item.imageAlt} fill className="object-contain p-6" sizes="100vw" />
                 </div>
-                <button className="mt-6 inline-flex h-14 w-full items-center justify-center rounded-full bg-[#ea580c] px-6 text-[16px] font-medium text-white">
-                  Add to cart
-                </button>
               </div>
-              <div className="relative min-h-[350px] lg:h-full lg:min-h-[450px]">
-                <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_rgba(249,115,22,0.18)_0%,_rgba(249,115,22,0.08)_30%,_rgba(249,115,22,0)_68%)] blur-3xl" />
-                <Image src={item.image} alt={item.imageAlt} fill className="object-contain" sizes="100vw" />
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
     );
@@ -216,28 +198,33 @@ export default function BestSellersSection() {
   return (
     <section
       ref={sectionRef}
-      className="hidden relative bg-[#fffaf3] text-[#431407] lg:block"
+      className="relative bg-[#fffaf3] text-[#431407] border-b border-orange-200/60"
       style={{ height: `${bestSellers.length * 96}vh` }}
     >
       <div
         ref={viewportRef}
-        className="mx-auto flex h-screen max-w-[1600px] flex-col px-4 py-6 sm:px-6 lg:px-8 lg:py-10"
+        className="mx-auto flex h-screen max-w-[1500px] flex-col justify-between px-4 py-8 sm:px-6 lg:px-8 lg:py-12"
       >
-        <p className="text-center text-[12px] font-semibold uppercase tracking-[0.08em] text-[#ea580c]">
-          Best sellers
-        </p>
+        <div className="text-center">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#ea580c]">
+            <Award className="size-4" />
+            <span>Sanctuary Favorites</span>
+          </div>
+        </div>
 
-        <div className="relative mt-2 w-full overflow-visible lg:mt-4" style={titleRailStyle}>
-          <div 
+        <div className="relative my-4 w-full overflow-visible" style={titleRailStyle}>
+          <div
             ref={trackRef}
-            className="flex w-max items-center gap-14 py-0.5 transition-transform duration-500 ease-out will-change-transform"
+            className="flex w-max items-center gap-14 py-1 transition-transform duration-500 ease-out will-change-transform"
           >
             {bestSellers.map((item, index) => {
               const isActive = index === activeIndex;
               return (
                 <h2
                   key={item.id}
-                  ref={(node) => { titleRefs.current[index] = node; }}
+                  ref={(node) => {
+                    titleRefs.current[index] = node;
+                  }}
                   className={`${titleClass} ${
                     isActive
                       ? "translate-y-[-0.02em] text-[#431407] opacity-100"
@@ -251,11 +238,10 @@ export default function BestSellersSection() {
           </div>
         </div>
 
-        <div className="mt-0 grid flex-1 items-center gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-8">
-          <div className="relative order-2 min-h-[420px] pb-4 sm:min-h-[460px] lg:order-1 lg:min-h-[560px] lg:pb-0">
+        <div className="grid flex-1 items-center gap-6 lg:grid-cols-2 lg:gap-12">
+          <div className="relative order-2 min-h-[420px] sm:min-h-[460px] lg:order-1 lg:min-h-[520px]">
             {bestSellers.map((item, index) => {
               const isActive = index === activeIndex;
-
               return (
                 <div
                   key={item.id}
@@ -263,25 +249,36 @@ export default function BestSellersSection() {
                     cardRefs.current[index] = node;
                   }}
                   className={`absolute inset-0 flex items-center transition-all duration-700 ease-out [will-change:transform,opacity] ${
-                    isActive ? "opacity-100 translate-y-0 scale-100" : "pointer-events-none opacity-0 translate-y-6 scale-[0.98]"
+                    isActive
+                      ? "opacity-100 translate-y-0 scale-100"
+                      : "pointer-events-none opacity-0 translate-y-6 scale-[0.98]"
                   }`}
                 >
-                  <div className="relative z-10 w-full max-w-[640px] rounded-[28px] border border-orange-200/80 bg-white/90 px-6 py-6 shadow-[0_20px_70px_rgba(194,65,12,0.10)] backdrop-blur-md sm:px-8 sm:py-8 md:px-10 md:py-9">
-                    <div className="flex items-start justify-between gap-4 border-b border-orange-200/80 pb-6">
+                  <div className="relative z-10 w-full max-w-[620px] rounded-3xl border border-orange-200/80 bg-white/95 px-6 py-6 shadow-xl backdrop-blur-md sm:px-8 sm:py-8 md:px-10">
+                    <div className="flex items-start justify-between gap-4 border-b border-orange-200/80 pb-5">
                       <div>
-                        <div className="flex flex-wrap items-end gap-x-3 gap-y-1">
-                          <span className="text-[26px] font-semibold text-[#431407] sm:text-[32px]">{item.price}</span>
-                          <span className="text-[14px] text-orange-900/35 line-through sm:text-[16px]">{item.oldPrice}</span>
-                          <span className="text-[14px] font-medium text-[#ea580c] sm:text-[17px]">{item.discount}</span>
+                        <span className="text-xs font-bold uppercase tracking-wider text-[#ea580c] block mb-1">
+                          Most Wanted Artifact
+                        </span>
+                        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                          <span className="font-serif text-3xl font-bold text-[#431407]">
+                            {item.price}
+                          </span>
+                          <span className="text-sm text-orange-900/40 line-through">
+                            {item.oldPrice}
+                          </span>
                         </div>
                       </div>
+                      <span className="rounded-full bg-[#ea580c] px-3.5 py-1 text-xs font-bold text-white shadow-xs">
+                        {item.discount}
+                      </span>
                     </div>
 
-                    <p className="mt-5 max-w-[34rem] text-[16px] leading-8 text-orange-950/75 sm:text-[17px] md:text-[19px]">
+                    <p className="mt-4 text-sm leading-relaxed text-orange-950/75 sm:text-base">
                       {item.description}
                     </p>
 
-                    <div className="mt-6">
+                    <div className="mt-5 border-t border-orange-100 pt-3">
                       {item.specs.map((spec) => (
                         <SpecificationRow key={spec.label} label={spec.label} value={spec.value} />
                       ))}
@@ -289,9 +286,10 @@ export default function BestSellersSection() {
 
                     <a
                       href={`/product?id=${item.id}`}
-                      className="mt-8 inline-flex h-14 w-full items-center justify-center rounded-full bg-[#ea580c] px-6 text-[16px] font-medium text-white shadow-lg shadow-orange-500/20 transition-all hover:bg-[#c2410c] active:scale-[0.99]"
+                      className="mt-6 inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-[#7c2d12] px-6 text-base font-bold text-white shadow-lg shadow-orange-950/15 transition-all duration-300 hover:bg-[#9a3412] hover:scale-[1.01] active:scale-98"
                     >
-                      View Details & Buy
+                      <span>View Details &amp; Buy</span>
+                      <ArrowRight className="size-4" />
                     </a>
                   </div>
                 </div>
@@ -299,18 +297,17 @@ export default function BestSellersSection() {
             })}
           </div>
 
-          <div className="relative order-1 flex items-center justify-center pb-0 lg:order-2 lg:justify-end lg:pb-0">
-            <div className="relative min-h-[360px] w-full max-w-[900px] sm:min-h-[440px] lg:min-h-[580px]">
+          <div className="relative order-1 flex items-center justify-center lg:order-2 lg:justify-end">
+            <div className="relative min-h-[360px] w-full max-w-[700px] sm:min-h-[440px] lg:min-h-[520px]">
               {bestSellers.map((item, index) => {
                 const isActive = index === activeIndex;
-
                 return (
                   <div
                     key={item.id}
                     ref={(node) => {
                       visualRefs.current[index] = node;
                     }}
-                    className={`absolute inset-0 flex items-center justify-center pb-0 transition-all duration-700 ease-out [will-change:transform,opacity] ${
+                    className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out [will-change:transform,opacity] ${
                       isActive
                         ? "opacity-100 translate-y-0 translate-x-0 scale-100"
                         : "opacity-0 translate-y-32 -translate-x-32 scale-[0.94]"
@@ -322,7 +319,7 @@ export default function BestSellersSection() {
                       }}
                       className={`absolute inset-0 rounded-full blur-3xl pointer-events-none [will-change:opacity,transform] ${
                         isActive
-                          ? "bg-[radial-gradient(circle,_rgba(249,115,22,0.16)_0%,_rgba(249,115,22,0.06)_40%,_transparent_70%)]"
+                          ? "bg-[radial-gradient(circle,_rgba(249,115,22,0.18)_0%,_rgba(249,115,22,0.05)_50%,_transparent_75%)]"
                           : "bg-transparent"
                       }`}
                     />
@@ -344,10 +341,3 @@ export default function BestSellersSection() {
     </section>
   );
 }
-
-
-
-
-
-
-
