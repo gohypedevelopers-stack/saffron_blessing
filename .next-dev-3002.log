@@ -94,3 +94,52 @@ Creating turbopack project { dir: 'D:\\spirituality\\saffron blessing', testMode
  GET /product 200 in 90ms (next.js: 25ms, application-code: 65ms)
  GET /product 200 in 91ms (next.js: 6ms, application-code: 86ms)
  GET /product 200 in 90ms (next.js: 65ms, application-code: 26ms)
+ GET /about 200 in 287ms (next.js: 264ms, application-code: 23ms)
+ GET /contact 200 in 256ms (next.js: 231ms, application-code: 25ms)
+ GET /product 200 in 23ms (next.js: 3ms, application-code: 20ms)
+ GET / 200 in 98ms (next.js: 45ms, application-code: 53ms)
+ GET /product/55-smart-tv 200 in 84ms (next.js: 57ms, application-code: 27ms)
+ GET / 200 in 41ms (next.js: 5ms, application-code: 37ms)
+✓ Compiled in 193ms
+ GET / 200 in 222ms (next.js: 41ms, application-code: 181ms)
+ GET / 200 in 224ms (next.js: 75ms, application-code: 149ms)
+ GET / 200 in 225ms (next.js: 105ms, application-code: 120ms)
+ GET / 200 in 762ms (next.js: 136ms, application-code: 626ms)
+ GET / 200 in 531ms (next.js: 43ms, application-code: 488ms)
+ GET / 200 in 271ms (next.js: 7ms, application-code: 265ms)
+  Reload env: .env.local
+ GET / 200 in 560ms (next.js: 73ms, application-code: 487ms)
+ GET / 200 in 435ms (next.js: 242ms, application-code: 193ms)
+ GET / 200 in 154ms (next.js: 72ms, application-code: 82ms)
+ GET / 200 in 155ms (next.js: 12ms, application-code: 142ms)
+ GET / 200 in 154ms (next.js: 118ms, application-code: 36ms)
+ GET / 200 in 453ms (next.js: 5ms, application-code: 448ms)
+✓ Compiled in 75ms
+ GET / 200 in 173ms (next.js: 34ms, application-code: 139ms)
+ GET / 200 in 102ms (next.js: 4ms, application-code: 98ms)
+ GET / 200 in 65ms (next.js: 5ms, application-code: 60ms)
+▲ Next.js 16.2.10 (Turbopack)
+- Local:         http://localhost:3002
+- Network:       http://192.168.56.1:3002
+- Environments: .env.local
+✓ Ready in 668ms
+Creating turbopack project { dir: 'D:\\spirituality\\saffron blessing', testMode: true }
+
+ GET / 200 in 905ms (next.js: 483ms, application-code: 422ms)
+ GET / 200 in 177ms (next.js: 51ms, application-code: 126ms)
+ GET / 200 in 96ms (next.js: 5ms, application-code: 91ms)
+ GET / 200 in 53ms (next.js: 10ms, application-code: 44ms)
+  Reload env: .env
+✓ Compiled in 2ms
+✓ Compiled in 36ms
+ GET / 500 in 265ms (next.js: 85ms, application-code: 179ms)
+ GET / 500 in 128ms (next.js: 41ms, application-code: 86ms)
+ GET / 500 in 143ms (next.js: 43ms, application-code: 100ms)
+ GET / 500 in 122ms (next.js: 47ms, application-code: 75ms)
+ GET / 500 in 124ms (next.js: 43ms, application-code: 80ms)
+✓ Compiled in 143ms
+ GET / 500 in 118ms (next.js: 36ms, application-code: 82ms)
+ GET / 200 in 454ms (next.js: 70ms, application-code: 383ms)
+ GET / 200 in 167ms (next.js: 43ms, application-code: 124ms)
+ GET / 200 in 97ms (next.js: 35ms, application-code: 62ms)
+[?25h

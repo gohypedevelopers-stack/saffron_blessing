@@ -32,14 +32,14 @@ function getNavHref(label: string) {
 function BrandLogo() {
   return (
     <span className="flex items-center gap-2">
-      <span className="flex size-9 items-center justify-center rounded-full bg-[#ea580c] text-[15px] font-semibold text-white shadow-sm shadow-orange-900/20">
+      <span className="flex size-8 items-center justify-center rounded-full bg-[#ea580c] text-[13px] font-semibold text-white shadow-sm shadow-orange-900/20">
         SB
       </span>
       <span className="leading-none">
-        <span className="block text-[18px] font-semibold tracking-tight text-[#7c2d12] sm:text-[22px]">
+        <span className="block text-[17px] font-semibold tracking-tight text-[#7c2d12] sm:text-[20px]">
           Saffron Blessings
         </span>
-        <span className="hidden text-[10px] font-semibold uppercase tracking-[0.22em] text-[#ea580c] sm:block">
+        <span className="hidden text-[9px] font-semibold uppercase tracking-[0.2em] text-[#ea580c] sm:block">
           Puja & Devotion
         </span>
       </span>
@@ -70,7 +70,7 @@ function FlatNavLink({ label, onClick }: { label: string; onClick?: () => void }
     <Link
       href={getNavHref(label)}
       onClick={onClick}
-      className="inline-flex h-full min-w-max items-center rounded-full px-2 text-[14px] font-medium tracking-tight text-[#7c2d12] transition-colors duration-200 hover:bg-orange-100 hover:text-[#ea580c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
+      className="inline-flex h-full min-w-max items-center px-2.5 text-[13px] font-medium tracking-tight text-[#7c2d12] transition-colors duration-200 hover:text-[#ea580c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
     >
       {label}
     </Link>
@@ -100,7 +100,7 @@ function DropdownNavItem({
         aria-controls={panelId}
         onClick={onToggle}
         onFocus={onOpen}
-        className="inline-flex h-full min-w-max items-center gap-0.5 rounded-full px-2 text-[14px] font-medium tracking-tight text-[#7c2d12] transition-colors duration-200 hover:bg-orange-100 hover:text-[#ea580c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
+        className="inline-flex h-full min-w-max items-center gap-0.5 px-2.5 text-[13px] font-medium tracking-tight text-[#7c2d12] transition-colors duration-200 hover:text-[#ea580c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
       >
         <span>{label}</span>
         <ChevronDown
@@ -216,10 +216,10 @@ export default function Navbar() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 border-b border-orange-200/80 bg-[#fffaf3]/95 backdrop-blur-md"
+      className="sticky top-0 z-50 border-t-[3px] border-t-[#24311f] border-b border-orange-200/80 bg-[#fffaf3]"
       onMouseLeave={() => setOpenMenu(null)}
     >
-      <div className="mx-auto flex h-[56px] max-w-[1600px] items-center justify-between px-3 sm:grid sm:h-[72px] sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-[56px] max-w-[1552px] items-center justify-between px-4 sm:grid sm:h-[72px] sm:grid-cols-[minmax(260px,1fr)_auto_minmax(120px,1fr)] sm:px-6 lg:px-8">
         <Link
           href="/"
           aria-label="Saffron Blessings home"
@@ -231,7 +231,7 @@ export default function Navbar() {
 
         <nav
           aria-label="Primary"
-          className="hidden h-full w-max items-stretch justify-self-center whitespace-nowrap px-4 lg:flex lg:gap-1"
+          className="hidden h-full w-max items-stretch justify-self-center whitespace-nowrap px-4 lg:flex lg:gap-2"
         >
           <FlatNavLink label={flatItems[0]} />
           <DropdownNavItem

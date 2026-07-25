@@ -26,6 +26,7 @@ export type ProductDetailItem = {
   specs: ProductSpec[];
   shippingNotice: string;
   mainImage: string;
+  variantId?: string;
 };
 
 const spiritualImage = "/spiritual-products.png";
@@ -374,6 +375,26 @@ export type SimilarProductCard = {
   alt: string;
   swatches: string[];
 };
+
+export function getSimilarProductsFromList(
+  products: ProductDetailItem[],
+  currentId?: string,
+  limit = 4
+): SimilarProductCard[] {
+  return products
+    .filter((product) => product.id !== currentId)
+    .slice(0, limit)
+    .map((product) => ({
+      id: product.id,
+      slug: product.slug,
+      name: product.name,
+      category: product.category,
+      price: product.price,
+      image: product.mainImage,
+      alt: product.name,
+      swatches: product.colors.map((color) => color.bg).slice(0, 3),
+    }));
+}
 
 const DEFAULT_SIMILAR_ORDER = [
   "55-smart-tv",

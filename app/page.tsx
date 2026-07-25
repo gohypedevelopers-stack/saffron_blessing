@@ -8,17 +8,24 @@ import NewProductCardsSection from "@/components/home/new-product-cards-section"
 import FaqSection from "@/components/home/faq-section";
 import CreatorVideosSection from "@/components/home/creator-videos-section";
 import Footer from "@/components/footer/footer";
+import { getShopifyProducts } from "@/lib/shopify";
+import { shopifyProductToHomeProduct } from "@/lib/shopify-adapters";
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function Home() {
+  const shopifyProducts = await getShopifyProducts(12);
+  const products = shopifyProducts.map(shopifyProductToHomeProduct);
+
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#fff7ed] text-[#431407]">
       <Navbar />
       <HeroShowcase />
       <CategorySection />
-      <ProductShowcaseSection />
+      <ProductShowcaseSection products={products.slice(0, 4)} />
       <BestSellersSection />
       <BrandSetupSection />
-      <NewProductCardsSection />
+      <NewProductCardsSection products={products} />
       <FaqSection />
       <CreatorVideosSection />
       <Footer />

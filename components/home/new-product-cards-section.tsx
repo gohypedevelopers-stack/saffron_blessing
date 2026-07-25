@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
@@ -7,15 +5,15 @@ import { Star } from "lucide-react";
 type SpiritualProduct = {
   id: string;
   title: string;
-  category: string;
+  category?: string;
   image: string;
   alt: string;
   price: string;
   oldPrice?: string;
   discount?: string;
   rating: number;
-  reviews: number;
-  href: string;
+  reviews: number | string;
+  href?: string;
 };
 
 const spiritualProducts: SpiritualProduct[] = [
@@ -140,7 +138,9 @@ function Rating({ value }: { value: number }) {
   );
 }
 
-export default function NewProductCardsSection() {
+export default function NewProductCardsSection({ products = [] }: { products?: SpiritualProduct[] }) {
+  const displayProducts = products.length > 0 ? products : spiritualProducts;
+
   return (
     <section id="sacred-store" className="bg-[#fff7ed] px-4 pb-6 pt-12 sm:px-6 sm:pb-8 sm:pt-14 lg:px-8 lg:pb-8 lg:pt-16">
       <div className="mx-auto max-w-[1600px]">
@@ -156,8 +156,8 @@ export default function NewProductCardsSection() {
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {spiritualProducts.map((product) => (
-            <Link key={product.id} href={product.href} className="group block h-full" aria-label={`View ${product.title}`}>
+          {displayProducts.map((product) => (
+            <Link key={product.id} href={product.href || `/product/${product.id}`} className="group block h-full" aria-label={`View ${product.title}`}>
               <article className="overflow-hidden border border-orange-200/80 bg-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(194,65,12,0.14)]">
                 <div className="relative flex h-[220px] items-center justify-center bg-[#fffaf3] p-4">
                   <Image
@@ -176,7 +176,7 @@ export default function NewProductCardsSection() {
 
                 <div className="flex flex-1 flex-col p-4">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#ea580c]">
-                    {product.category}
+                    {product.category || "Shopify Offering"}
                   </p>
                   <h3 className="mt-1.5 line-clamp-2 text-[14px] font-medium leading-5 text-[#431407]">
                     {product.title}

@@ -17,14 +17,17 @@ import {
   getProductById,
   getSimilarProducts,
   ProductDetailItem,
+  SimilarProductCard,
 } from "@/lib/products-data";
 import SimilarProductsSection from "@/components/product/similar-products-section";
+import { redirectToShopifyCheckout } from "@/lib/checkout";
 
 interface ProductDetailProps {
   initialProduct?: ProductDetailItem;
+  initialSimilarProducts?: SimilarProductCard[];
 }
 
-export default function ProductDetail({ initialProduct }: ProductDetailProps) {
+export default function ProductDetail({ initialProduct, initialSimilarProducts }: ProductDetailProps) {
   const searchParams = useSearchParams();
   const productId = searchParams?.get("id") || searchParams?.get("product");
 
@@ -33,9 +36,14 @@ export default function ProductDetail({ initialProduct }: ProductDetailProps) {
     return getProductById(productId);
   }, [initialProduct, productId]);
 
-  const similarProducts = useMemo(() => getSimilarProducts(product.id, 4), [product.id]);
+  const similarProducts = useMemo(
+    () => initialSimilarProducts ?? getSimilarProducts(product.id, 4),
+    [initialSimilarProducts, product.id]
+  );
   const [selectedColor, setSelectedColor] = useState(product.colors[0]?.name || "Standard");
   const [isFavorite, setIsFavorite] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   useEffect(() => {
     if (product.colors[0]) {
@@ -195,9 +203,22 @@ export default function ProductDetail({ initialProduct }: ProductDetailProps) {
             <div className="flex items-center gap-3">
               <button
                 type="button"
+                disabled={isCheckingOut}
+                onClick={async () => {
+                  if (!product.variantId) return;
+
+                  setCheckoutError(null);
+                  setIsCheckingOut(true);
+                  try {
+                    await redirectToShopifyCheckout(product.variantId);
+                  } catch (error) {
+                    setCheckoutError(error instanceof Error ? error.message : "Unable to start Shopify checkout.");
+                    setIsCheckingOut(false);
+                  }
+                }}
                 className="flex h-12 flex-1 items-center justify-center rounded-2xl bg-[#ea580c] text-sm font-medium text-white shadow-md shadow-orange-500/20 transition-all hover:bg-[#c2410c] active:scale-[0.99] sm:h-14 sm:rounded-full sm:text-base"
               >
-                Buy Now
+                {isCheckingOut ? "Opening Checkout..." : product.variantId ? "Buy with Shopify" : "Buy Now"}
               </button>
 
               <button
@@ -221,6 +242,10 @@ export default function ProductDetail({ initialProduct }: ProductDetailProps) {
                 <ShoppingBag className="size-5 stroke-[1.8]" />
               </button>
             </div>
+
+            {checkoutError ? (
+              <p className="mt-3 text-[12px] font-medium text-red-600">{checkoutError}</p>
+            ) : null}
 
             <div className="mt-8 grid grid-cols-3 gap-3 border-t border-orange-200 pt-6">
               <div className="flex flex-col items-center p-2 text-center">

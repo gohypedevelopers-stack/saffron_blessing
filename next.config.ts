@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         hostname: "www.xelectron.com",
         pathname: "/wp-content/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+        pathname: "/**",
+      },
     ],
   },
 };

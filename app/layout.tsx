@@ -30,7 +30,9 @@ export default function RootLayout({
       lang="en"
       className={cn("h-full", "scroll-smooth", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
-      <body className="min-h-dvh flex flex-col overflow-x-hidden">{children}</body>
+      <body className="min-h-dvh flex flex-col overflow-x-hidden" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

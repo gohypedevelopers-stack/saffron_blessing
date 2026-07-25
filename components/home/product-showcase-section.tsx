@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
 import { products } from "@/components/home/content";
+import type { ProductItem } from "@/components/home/content";
 
 function Rating({ value }: { value: number }) {
   const stars = Array.from({ length: 5 }, (_, index) => index + 1);
@@ -18,7 +19,9 @@ function Rating({ value }: { value: number }) {
   );
 }
 
-export default function ProductShowcaseSection() {
+export default function ProductShowcaseSection({ products: incomingProducts = [] }: { products?: ProductItem[] }) {
+  const displayProducts = incomingProducts.length > 0 ? incomingProducts : products;
+
   return (
     <section className="bg-[#fffaf3] px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
       <div className="mx-auto max-w-[1600px]">
@@ -34,7 +37,7 @@ export default function ProductShowcaseSection() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {products.map((product) => (
+          {displayProducts.map((product) => (
             <Link
               key={product.id}
               href={`/product/${product.id}`}
