@@ -364,3 +364,173 @@ export async function createShopifyCart(lines: ShopifyCartLineInput[] | string, 
 
   return data?.cartCreate.cart ?? null;
 }
+
+export type ShopifyCustomer = {
+  id: string;
+  email: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  phone?: string | null;
+  orders?: {
+    nodes: Array<{
+      id: string;
+      orderNumber: number;
+      processedAt: string;
+      totalPrice: ShopifyMoney;
+      fulfillmentStatus: string;
+    }>;
+  };
+};
+
+export async function shopifyCustomerCreate(input: {
+  email: string;
+  password: string;
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+}) {
+  if (!isShopifyConfigured()) {
+    throw new Error("Shopify is not configured. Please check your SHOPIFY_STORE_DOMAIN and SHOPIFY_STOREFRONT_ACCESS_TOKEN environment variables.");
+  }
+
+  const data = await shopifyFetch<{
+    customerCreate: {
+      customer: ShopifyCustomer | null;
+      customerUserErrors: Array<{ field: string[] | null; message: string; code: string }>;
+    };
+  }>({
+    query: `
+      mutation customerCreate($input: CustomerCreateInput!) {
+        customerCreate(input: $input) {
+          customer {
+            id
+            email
+            firstName
+            lastName
+          }
+          customerUserErrors {
+            field
+            message
+            code
+          }
+        }
+      }
+    `,
+    variables: { input },
+    cache: "no-store",
+  });
+
+  const errors = data?.customerCreate.customerUserErrors ?? [];
+  if (errors.length) {
+    throw new Error(errors.map((error) => error.message).join("; "));
+  }
+
+  return data?.customerCreate.customer ?? null;
+}
+
+export async function shopifyCustomerLogin(input: {
+  email: string;
+  password: string;
+}) {
+  if (!isShopifyConfigured()) {
+    throw new Error("Shopify is not configured. Please check your SHOPIFY_STORE_DOMAIN and SHOPIFY_STOREFRONT_ACCESS_TOKEN environment variables.");
+  }
+
+  const data = await shopifyFetch<{
+    customerAccessTokenCreate: {
+      customerAccessToken: {
+        accessToken: string;
+        expiresAt: string;
+      } | null;
+      customerUserErrors: Array<{ field: string[] | null; message: string; code: string }>;
+    };
+  }>({
+    query: `
+      mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+        customerAccessTokenCreate(input: $input) {
+          customerAccessToken {
+            accessToken
+            expiresAt
+          }
+          customerUserErrors {
+            field
+            message
+            code
+          }
+        }
+      }
+    `,
+    variables: { input },
+    cache: "no-store",
+  });
+
+  const errors = data?.customerAccessTokenCreate.customerUserErrors ?? [];
+  if (errors.length) {
+    throw new Error(errors.map((error) => error.message).join("; "));
+  }
+
+  return data?.customerAccessTokenCreate.customerAccessToken ?? null;
+}
+
+export async function shopifyGetCustomer(customerAccessToken: string): Promise<ShopifyCustomer | null> {
+  if (!isShopifyConfigured() || !customerAccessToken) {
+    return null;
+  }
+
+  try {
+    const data = await shopifyFetch<{
+      customer: ShopifyCustomer | null;
+    }>({
+      query: `
+        query getCustomer($customerAccessToken: String!) {
+          customer(customerAccessToken: $customerAccessToken) {
+            id
+            email
+            firstName
+            lastName
+            phone
+            orders(first: 10, sortKey: PROCESSED_AT, reverse: true) {
+              nodes {
+                id
+                orderNumber
+                processedAt
+                totalPrice {
+                  amount
+                  currencyCode
+                }
+                fulfillmentStatus
+              }
+            }
+          }
+        }
+      `,
+      variables: { customerAccessToken },
+      cache: "no-store",
+    });
+
+    return data?.customer ?? null;
+  } catch (error) {
+    console.warn("Error fetching Shopify customer:", error);
+    return null;
+  }
+}
+
+export async function shopifyCustomerLogout(customerAccessToken: string) {
+  if (!isShopifyConfigured() || !customerAccessToken) return;
+
+  try {
+    await shopifyFetch({
+      query: `
+        mutation customerAccessTokenDelete($customerAccessToken: String!) {
+          customerAccessTokenDelete(customerAccessToken: $customerAccessToken) {
+            deletedAccessToken
+          }
+        }
+      `,
+      variables: { customerAccessToken },
+      cache: "no-store",
+    });
+  } catch (error) {
+    console.warn("Error deleting customer access token:", error);
+  }
+}

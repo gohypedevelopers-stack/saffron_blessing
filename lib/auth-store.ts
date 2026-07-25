@@ -119,8 +119,25 @@ export function loginLocalAuth(customData?: Partial<LocalUser>): LocalUser {
   return newUser;
 }
 
+export const SHOPIFY_TOKEN_KEY = "saffron-shopify-token";
+
+export function readShopifyToken(): string | null {
+  if (typeof window === "undefined") return null;
+  return window.localStorage.getItem(SHOPIFY_TOKEN_KEY);
+}
+
+export function writeShopifyToken(token: string | null) {
+  if (typeof window === "undefined") return;
+  if (token === null) {
+    window.localStorage.removeItem(SHOPIFY_TOKEN_KEY);
+  } else {
+    window.localStorage.setItem(SHOPIFY_TOKEN_KEY, token);
+  }
+}
+
 export function logoutLocalAuth() {
   writeLocalAuth(null);
+  writeShopifyToken(null);
 }
 
 export function updateLocalAuth(updates: Partial<LocalUser>): LocalUser | null {

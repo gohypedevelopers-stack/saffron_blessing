@@ -6,8 +6,9 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { dropdownItems, flatItems } from "@/components/home/content";
 import type { NavDropdownItem } from "@/components/home/content";
 import { readLocalCart, SHOPIFY_CART_EVENT } from "@/lib/cart-store";
-import { readLocalAuth, type LocalUser, SAFFRON_AUTH_EVENT } from "@/lib/auth-store";
-import AuthModal from "@/components/navbar/auth-modal";
+
+const SHOPIFY_LOGIN_URL = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN ?? "ui11g6-zh.myshopify.com"}/account/login`;
+
 
 const navHrefs: Record<string, string> = {
   Home: "/",
@@ -54,17 +55,20 @@ function IconLink({
   label,
   href,
   onClick,
+  external,
 }: {
   children: ReactNode;
   label: string;
   href: string;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  external?: boolean;
 }) {
   return (
     <Link
       href={href}
       onClick={onClick}
       aria-label={label}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className="relative inline-flex size-8 items-center justify-center rounded-full text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
     >
       {children}
@@ -196,8 +200,6 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
-  const [authUser, setAuthUser] = useState<LocalUser | null>(null);
-  const [authModalOpen, setAuthModalOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -238,15 +240,7 @@ export default function Navbar() {
     };
   }, []);
 
-  useEffect(() => {
-    function syncAuth() {
-      setAuthUser(readLocalAuth());
-    }
 
-    syncAuth();
-    window.addEventListener(SAFFRON_AUTH_EVENT, syncAuth);
-    return () => window.removeEventListener(SAFFRON_AUTH_EVENT, syncAuth);
-  }, []);
 
   const handleNavigate = () => {
     setOpenMenu(null);
@@ -310,21 +304,9 @@ export default function Navbar() {
           <IconLink href="/#sacred-store" label="Search products">
             <Search className="size-[15px] stroke-[1.7]" />
           </IconLink>
-          <button
-            type="button"
-            onClick={() => setAuthModalOpen(true)}
-            aria-label="Member Altar Sanctuary"
-            className="relative inline-flex size-8 items-center justify-center rounded-full text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/30"
-            title={authUser ? `Logged in as ${authUser.name}` : "Sign In / Sacred Sanctuary"}
-          >
-            {authUser ? (
-              <span className="flex size-7 items-center justify-center rounded-full bg-[#ea580c] text-[11px] font-bold text-white shadow-xs">
-                {authUser.name.slice(0, 1).toUpperCase()}
-              </span>
-            ) : (
-              <User className="size-[16px] stroke-[1.8]" />
-            )}
-          </button>
+          <IconLink href={SHOPIFY_LOGIN_URL} label="Sign in to my account" external>
+            <User className="size-[16px] stroke-[1.8]" />
+          </IconLink>
           <IconLink href="/cart" label={`Shopping bag with ${cartCount} items`}>
             <ShoppingBag className="size-[15px] stroke-[1.7]" />
             {cartCount > 0 ? (
@@ -339,21 +321,9 @@ export default function Navbar() {
           <IconLink href="/#sacred-store" label="Search products">
             <Search className="size-[15px] stroke-[1.7]" />
           </IconLink>
-          <button
-            type="button"
-            onClick={() => setAuthModalOpen(true)}
-            aria-label="Member Altar Sanctuary"
-            className="relative inline-flex size-8 items-center justify-center rounded-full text-[#7c2d12] transition-opacity duration-200 hover:opacity-70 focus-visible:outline-none"
-            title={authUser ? `Logged in as ${authUser.name}` : "Sign In / Sacred Sanctuary"}
-          >
-            {authUser ? (
-              <span className="flex size-7 items-center justify-center rounded-full bg-[#ea580c] text-[11px] font-bold text-white shadow-xs">
-                {authUser.name.slice(0, 1).toUpperCase()}
-              </span>
-            ) : (
-              <User className="size-[16px] stroke-[1.8]" />
-            )}
-          </button>
+          <IconLink href={SHOPIFY_LOGIN_URL} label="Sign in to my account" external>
+            <User className="size-[16px] stroke-[1.8]" />
+          </IconLink>
           <IconLink href="/cart" label={`Shopping bag with ${cartCount} items`}>
             <ShoppingBag className="size-[15px] stroke-[1.7]" />
             {cartCount > 0 ? (
@@ -386,7 +356,6 @@ export default function Navbar() {
           </div>
         </div>
       ) : null}
-      <AuthModal open={authModalOpen} onOpenChange={setAuthModalOpen} />
     </header>
   );
 }
