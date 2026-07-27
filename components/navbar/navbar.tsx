@@ -16,16 +16,16 @@ const navHrefs: Record<string, string> = {
   "Contact Us": "/contact",
   OFFERINGS: "/#sacred-store",
   RITUALS: "/#rituals",
-  GUIDANCE: "/#guidance",
+  GUIDANCE: "/guidance/spiritual-consultation",
   "Puja Essentials": "/product/55-smart-tv",
   "Meditation Tools": "/product/techno-projector",
   "Sacred Gifts": "/product/yuqos-neosound-flex",
   "Daily Puja": "/product/55-smart-tv",
   "Festival Kits": "/product/15-dpf",
   "Temple Decor": "/product/iprojector-2-plus",
-  "Spiritual Consultation": "/#guidance",
-  "Prayer Requests": "/contact",
-  "Sacred Learning": "/#guidance",
+  "Spiritual Consultation": "/guidance/spiritual-consultation",
+  "Prayer Requests": "/guidance/prayer-requests",
+  "Sacred Learning": "/guidance/sacred-learning",
 };
 
 function getNavHref(label: string) {

@@ -29,15 +29,15 @@ export default function CategorySection() {
           </Link>
         </div>
 
-        {/* Refined Categories Grid (Sleek border radius & reduced text) */}
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        {/* Refined Categories Grid */}
+        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 md:grid-cols-3 lg:grid-cols-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {categories.map((category) => {
             const slug = category.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
             return (
               <Link
                 key={category.title}
                 href={`/product?id=${slug}`}
-                className="group flex flex-col justify-between overflow-hidden rounded-xl border border-orange-200/70 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-orange-300 hover:shadow-md"
+              className="group flex w-[56vw] max-w-[220px] shrink-0 flex-col justify-between overflow-hidden rounded-xl border border-orange-200/70 bg-white p-3.5 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-orange-300 hover:shadow-md sm:w-auto sm:max-w-none"
               >
                 {/* Sleek Image Container with refined border radius */}
                 <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-orange-100/80 bg-[#fffefc]">

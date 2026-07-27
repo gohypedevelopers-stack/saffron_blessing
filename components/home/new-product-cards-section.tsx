@@ -181,11 +181,11 @@ export default function NewProductCardsSection({
         </div>
 
         {/* Product Cards Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {displayProducts.map((product) => (
             <article
               key={product.id}
-              className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-orange-200/80 bg-white p-5 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-orange-300 hover:shadow-xl"
+              className="group flex w-[76vw] max-w-[300px] shrink-0 flex-col justify-between overflow-hidden rounded-3xl border border-orange-200/80 bg-white p-5 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-orange-300 hover:shadow-xl sm:w-auto sm:max-w-none"
             >
               <div>
                 {/* Image Container */}
